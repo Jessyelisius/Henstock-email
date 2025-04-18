@@ -1,6 +1,6 @@
 const mailer = require("nodemailer");
-const randtoken = require("rand-token");
-const jwt = require("jsonwebtoken");
+// const randtoken = require("rand-token");
+// const jwt = require("jsonwebtoken");
 
 const generateOtp = () => {
   return Math.floor(1000 + Math.random() * 9000);
@@ -38,43 +38,39 @@ const Sendmail = async (to, subject, html, many = false) => {
   }
 };
 
+// utils/emailTemplate.js
 
-const sendOTP = async ({ to, subject, text }) => {
-  try {
-    const mailOptions = {
-      from: process.env.email,
-      to,
-      subject,
-      text,
-    };
-    return myemail.sendMail(mailOptions);
-  } catch (error) {
-    console.error("OTP Email error:", error.message);
-    return { error: error.message };
-  }
-};
+const emailTemplate = (Body) => {
+    return `
+    <div style="font-family: Arial, sans-serif; max-width: 650px; margin: auto; border: 1px solid #e0e0e0; background-color: #ffffff;">
 
-function generateLink(Email, type, role = "user") {
-  if (!type) throw new Error("Type is required in generateLink function");
-  const token = jwt.sign({ Email }, process.env.jwt_secret_token, {
-    expiresIn: "1hr",
-  }); // Secure token
+      <!-- Header -->
+      <div style="background-color: #4CAF50; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <h1 style="margin: 0; color: #ffffff; font-size: 24px;">Henstock</h1>
+        <p style="margin: 5px 0 0; color: #e0ffe0; font-size: 14px;">Sustainable Farming. Quality Produce.</p>
+      </div>
 
-  //for admin and user email verification
-  const basePath = role === "admin" ? "admin" : "auth";
-  
-  return `${
-    process.env.frontendURL
-  }/${basePath}/${type}?token=${token}&email=${encodeURIComponent(Email)}`;
-}
+      <!-- Body -->
+      <div style="padding: 30px; color: #333333; font-size: 15px; line-height: 1.6;">
+        ${Body}
+      </div>
 
-// function Links() {
-//   return randtoken.generate(16, "0123456789qwertyuiopasdfghjklzxcvbnm$.");
-// }
+      <!-- Footer -->
+      <div style="background-color: #f7f7f7; padding: 20px; border-top: 1px solid #dddddd; text-align: center; font-size: 13px; color: #777;">
+        <p style="margin: 0 0 8px;"><strong>Henstock</strong> – Promoting sustainable farming and distribution of fresh farm produce across Nigeria and beyond.</p>
+        <p style="margin: 8px 0;">Follow us on:
+          <a href="https://facebook.com/henstock" style="color: #4CAF50; text-decoration: none;">Facebook</a> |
+          <a href="https://instagram.com/henstock" style="color: #4CAF50; text-decoration: none;">Instagram</a> |
+          <a href="https://twitter.com/henstock" style="color: #4CAF50; text-decoration: none;">Twitter</a>
+        </p>
+        <p style="margin-top: 10px;">&copy; ${new Date().getFullYear()} Henstock. All rights reserved.</p>
+      </div>
+
+    </div>
+  `;
+  };
 
 module.exports = {
   Sendmail,
-  sendOTP,
-  generateOtp,
-  generateLink,
+  emailTemplate
 };

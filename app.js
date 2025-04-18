@@ -6,7 +6,11 @@ const app = express();
 const port = 3001;
 DBconnection();
 
-/////email route
+///////middleware///////
+app.use(express.json());
 
+
+/////email route
+app.use('/', require('./routes/email'));
 
 app.listen(port, () => console.log(`App listening on port ${port}`));

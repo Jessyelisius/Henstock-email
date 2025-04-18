@@ -9,7 +9,7 @@ const Emailschema = new mongoose.Schema({
         type:String,
         required:[true,'Subject is required']
     },
-    Email:{
+    recipientEmail:{
         type:String,
         required:[true, 'Email is required']
     },
