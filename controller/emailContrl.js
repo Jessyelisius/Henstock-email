@@ -7,7 +7,7 @@ const sendEmail = async(req, res) => {
         const many = recipientEmail.length>1;
 
         if (!Subject || !Body || !recipientEmail) {
-            return res.status(400).json({ error: "All fields are required." });
+            return res.status(400).render('emailForm',{ error: "All fields are required." });
           }
 
         const sendResult = await Sendmail(
@@ -18,21 +18,36 @@ const sendEmail = async(req, res) => {
         );
 
         if (sendResult.error) {
-            return res.status(500).json({ error: sendResult.error });
+            return res.status(500).render('emailForm',{ error: sendResult.error });
           }
 
         await EmailDetailsModel.create({
             Subject,
             Body,
             recipientEmail,
-            sendAt:new Date()
+            SentAt:new Date()
         });
         
-        return res.status(200).json({ message: "Email sent and saved!" });
+        return res.status(200).render('emailForm',{ message: "Email sent and saved!" });
     } catch (error) {
         console.log('error sending mail', error);
-        return res.status(500).json({ error: error.message });
+        return res.status(500).render('emailForm',{ error: error.message });
     }
 }
 
-module.exports = sendEmail;
+const viewMail = async (req, res) => {
+    try {
+        const emails = await EmailDetailsModel.find().sort({ SentAt: -1 });
+
+        if (!emails || emails.length === 0) {
+            return res.render('viewMail', { error: "No email records found", emails: [] });
+        }
+
+        res.render('viewMail', { emails, error: null });
+    } catch (error) {
+        console.error('Error fetching emails:', error);
+        res.status(500).render('viewMail', { error: "Server error occurred", emails: [] });
+    }
+};
+
+module.exports = {sendEmail, viewMail};

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Emails</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+
+  <!-- <div class="container mt-5">
+    <h2 class="mb-4 text-center">Sent Emails</h2>
+    <button class="btn btn-success" ><a href="/" style="text-decoration: none; color: black;">SendMail</a></button>
+
+    
+  </div> -->
+  <% if (error) { %>
+    <div class="alert alert-danger text-center mt-3"><%= error %></div>
+  <% } else { %>
+    <div class="container mt-5">
+      <h2 class="mb-4">Sent Emails</h2>
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Subject</th>
+            <th>Body</th>
+            <th>Recipients</th>
+            <th>Sent At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( emails && emails.length > 0){%>
+            <% emails.forEach((mail, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= mail.Subject %></td>
+                <td><%= mail.Body %></td>
+                <td>
+                  <% if (Array.isArray(mail.recipientEmail)) { %>
+                    <%= mail.recipientEmail.join(", ") %>
+                  <% } else { %>
+                    <%= mail.recipientEmail %>
+                  <% } %>
+                </td>
+                <td><%= new Date(mail.SentAt).toLocaleString() %></td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <p>No emails available to display.</p>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

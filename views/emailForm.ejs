@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henstock Email</title>
+
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: linear-gradient(to bottom, rgb(6, 108, 100), rgb(14, 48, 122));
+  max-width: 800px;
+  width: 95%;
+  height: auto;
+  margin: 50px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.box-1,
+.box-2 {
+  padding: 30px;
+}
+
+.content-holder {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  margin-top: 10%;
+}
+
+.content-holder h2 {
+  font-size: 34px;
+  margin: 20px auto;
+}
+.button-1 a{
+  text-decoration: none;
+  color: black;
+}
+.content-holder p {
+  margin: 30px auto;
+}
+
+.content-holder button {
+  border: none;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: white;
+  width: 150px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.box-2 {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+
+.login-form-container {
+  text-align: center;
+}
+
+.login-form-container h1 {
+  color: black;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.input-field {
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid rgb(168, 168, 168);
+  width: 90%;
+  max-width: 250px;
+  margin: 10px 0;
+  outline: none;
+}
+
+.login-button {
+  color: white;
+  font-size: 14px;
+  padding: 13px;
+  border-radius: 7px;
+  border: none;
+  width: 90%;
+  max-width: 250px;
+  outline: none;
+  background-color: rgb(56, 102, 189);
+  cursor: pointer;
+}
+
+.button-2 {
+  display: none;
+}
+
+.signup-form-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center;
+  display: none;
+}
+
+.signup-form-container h1 {
+  color: black;
+  font-size: 24px;
+  padding: 20px;
+}
+
+.signup-button {
+  color: white;
+  font-size: 14px;
+  padding: 13px;
+  border-radius: 7px;
+  border: none;
+  width: 250px;
+  background-color: rgb(56, 189, 149);
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .content-holder {
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .box-2 {
+    padding: 20px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!--Data or Content-->
+        <div class="box-1">
+          <div class="content-holder">
+            <h2>Henstock!</h2>
+      
+            <button class="button-1"><a href="/viewMail">View Sent Mails</a></button>
+            <button class="button-2" onclick="login()">Login</button>
+          </div>
+        </div>
+      <form action="/sendmail" method="post">
+        <!--Forms-->
+        <div class="box-2">
+          <div class="login-form-container">
+            <h1>Email Form</h1>
+            <% if (error) { %>
+              <small class="text-danger"><%= error %></small>
+            <% } %> <br>
+            <input type="text" placeholder="Subject" name="Subject" class="input-field">
+            <br>
+            <textarea type="text" placeholder="Details of email..." name="Body" class="input-field"></textarea>
+            <br>
+            <input type="email" placeholder="Recipient Email" name="recipientEmail" class="input-field">
+            <br><br>
+            <button class="login-button" type="submit">SendMail</button>
+          </div>
+      
+          <!--Create Container for Signup form-->
+          <!-- <div class="signup-form-container">
+            <h1>Sign Up Form</h1>
+            <input type="text" placeholder="Username" class="input-field">
+            <br><br>
+            <input type="email" placeholder="Email" class="input-field">
+            <br><br>
+            <input type="password" placeholder="Password" class="input-field">
+            <br><br>
+            <button class="signup-button" type="button">Sign Up</button>
+          </div> -->
+      
+        </div>
+      </form>
+</body>
+<script>
+    function signup()
+{
+    document.querySelector(".login-form-container").style.cssText = "display: none;";
+    document.querySelector(".signup-form-container").style.cssText = "display: block;";
+    document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(56, 189, 149),  rgb(28, 139, 106));";
+    document.querySelector(".button-1").style.cssText = "display: none";
+    document.querySelector(".button-2").style.cssText = "display: block";
+
+};
+
+//     function login()
+// {
+//     document.querySelector(".signup-form-container").style.cssText = "display: none;";
+//     document.querySelector(".login-form-container").style.cssText = "display: block;";
+//     document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
+//     document.querySelector(".button-2").style.cssText = "display: none";
+//     document.querySelector(".button-1").style.cssText = "display: block";
+
+// }
+</script>
+</html>
