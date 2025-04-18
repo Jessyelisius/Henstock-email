@@ -12,6 +12,9 @@ const Emailschema = new mongoose.Schema({
     Email:{
         type:String,
         required:[true, 'Email is required']
+    },
+    SentAt:{
+        type:Date
     }
 
 },{timestamps:true});

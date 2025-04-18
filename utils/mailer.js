@@ -25,7 +25,7 @@ const Sendmail = async (to, subject, html, many = false) => {
   try {
     const mailoption = {
       from: `${process.env.Company} <${process.env.email}>`,
-      [many ? "bcc" : "to"]: to, //bcc for bulk, to for single
+      [many ? "bcc" : "to"]: to, //bcc for bulk; to for single
       //   ...{ bcc: to },
       subject: subject,
       html: html,
