@@ -17,7 +17,7 @@ const myemail = mailer.createTransport({
     pass: process.env.pass,
   },
   tls: {
-    rejectUnauthorized: false,
+    rejectUnauthorized: true,
   },
 });
 
