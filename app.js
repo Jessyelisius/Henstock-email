@@ -16,4 +16,6 @@ app.use(express.static("public"));
 /////email route
 app.use('/', require('./routes/email'));
 
-app.listen(port, () => console.log(`App listening on port ${port}`));
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`)
+});
