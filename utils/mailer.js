@@ -46,7 +46,7 @@ const emailTemplate = (Body) => {
 
       <!-- Header -->
       <div style="background-color: #4CAF50; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-      <img src="https://yourdomain.com/image/logo.jpg" alt="Henstock Logo" style="width: 80px; height: auto; margin-bottom: 10px;" />  
+      <img src="https://henstock-email.onrender.com/image/logo.jpg" alt="Henstock Logo" style="width: 80px; height: auto; margin-bottom: 10px;" />  
       <h1 style="margin: 0; color: #ffffff; font-size: 24px;">Henstock </h1>
         <p style="margin: 5px 0 0; color: #e0ffe0; font-size: 14px;">Sustainable Farming. Quality Produce.</p>
       </div>
