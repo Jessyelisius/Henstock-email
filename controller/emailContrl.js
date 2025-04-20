@@ -28,7 +28,7 @@ const sendEmail = async(req, res) => {
             SentAt:new Date()
         });
         
-        return res.status(200).render('emailForm',{ message: "Email sent and saved!" });
+        return res.status(200).render('emailForm',{ message: "Email sent and saved!", error:'' });
     } catch (error) {
         console.log('error sending mail', error);
         return res.status(500).render('emailForm',{ error: error.message });

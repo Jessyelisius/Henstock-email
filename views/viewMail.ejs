@@ -19,14 +19,15 @@
   <% } else { %>
     <div class="container mt-5">
       <h2 class="mb-4">Sent Emails</h2>
+    <button class="btn btn-outline-primary" ><a href="/" style="text-decoration: none; color: black;">SendMail</a></button><br><br>
       <table class="table table-bordered table-hover">
         <thead class="table-dark">
           <tr>
             <th>#</th>
             <th>Subject</th>
-            <th>Body</th>
-            <th>Recipients</th>
-            <th>Sent At</th>
+            <th>Message Body</th>
+            <th>Recipients Email</th>
+            <th>Date Sent</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +36,8 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= mail.Subject %></td>
-                <td><%= mail.Body %></td>
+                <td class="decoded"><%= mail.Body.replace(/<[^>]*>/g, '').slice(0, 100) %>...</td>
+
                 <td>
                   <% if (Array.isArray(mail.recipientEmail)) { %>
                     <%= mail.recipientEmail.join(", ") %>
@@ -56,5 +58,18 @@
   
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script>
+    function decodeHTMLEntities() {
+      const elements = document.querySelectorAll(".decoded");
+      elements.forEach(el => {
+        const textarea = document.createElement("textarea");
+        textarea.innerHTML = el.textContent;
+        el.textContent = textarea.value;
+      });
+    }
+  
+    window.onload = decodeHTMLEntities;
+  </script>
+  
 </body>
 </html>

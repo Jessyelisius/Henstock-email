@@ -5,74 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Henstock Email</title>
 
-    <style>
-      * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    <!-- tiny -->
+  <!-- Place the first <script> tag in your HTML's <head> -->
+<script src="https://cdn.tiny.cloud/1/xd4r91atif4800vh7hmibaz82hpqpj4s80a3hdtf082cvcaf/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: [
+      // Core editing features
+      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+      // Your account includes a free trial of TinyMCE premium features
+      // Try the most popular premium features until May 2, 2025:
+      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+    ],
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+  });
+</script>
+
+  <style>
+    * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f0f0f0;
+font-family: Arial, Helvetica, sans-serif;
+background-color: #f0f0f0;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  background: linear-gradient(to bottom, rgb(6, 108, 100), rgb(14, 48, 122));
-  max-width: 800px;
-  width: 95%;
-  height: auto;
-  margin: 50px auto;
-  border-radius: 10px;
-  overflow: hidden;
+display: grid;
+grid-template-columns: 1fr 2fr;
+background: linear-gradient(to bottom, rgb(6, 108, 100), rgb(14, 48, 122));
+max-width: 900px;
+width: 95%;
+height: auto;
+margin: 50px auto;
+border-radius: 10px;
+overflow: hidden;
 }
 
 .box-1,
 .box-2 {
-  padding: 30px;
+padding: 30px;
 }
 
 .content-holder {
-  text-align: center;
-  color: white;
-  font-size: 14px;
-  font-weight: lighter;
-  letter-spacing: 2px;
-  margin-top: 10%;
+text-align: center;
+color: white;
+font-size: 14px;
+font-weight: lighter;
+letter-spacing: 2px;
+margin-top: 10%;
 }
 
 .content-holder h2 {
-  font-size: 34px;
-  margin: 20px auto;
+font-size: 34px;
+margin: 20px auto;
 }
 .button-1 a{
-  text-decoration: none;
-  color: black;
+text-decoration: none;
+color: black;
 }
 .content-holder p {
-  margin: 30px auto;
+margin: 30px auto;
 }
 
 .content-holder button {
-  border: none;
-  font-size: 15px;
-  padding: 10px;
-  border-radius: 6px;
-  background-color: white;
-  width: 150px;
-  margin: 20px auto;
-  cursor: pointer;
+border: none;
+font-size: 15px;
+padding: 10px;
+border-radius: 6px;
+background-color: white;
+width: 150px;
+margin: 20px auto;
+cursor: pointer;
 }
 
 .box-2 {
-  background-color: white;
-  border-radius: 0 0 10px 10px;
+background-color: white;
+border-radius: 0 0 10px 10px;
 }
-
 .login-form-container {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-form-container h1 {
@@ -81,77 +109,128 @@ body {
   padding: 20px;
 }
 
-.input-field {
+/* Make all input, textarea, and button same width */
+.input-field,
+textarea.input-field,
+.login-button {
+  width: 100%;
+  max-width: 380px; /* You can increase this if needed */
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 12px;
   font-size: 14px;
-  padding: 10px;
   border-radius: 7px;
   border: 1px solid rgb(168, 168, 168);
-  width: 90%;
-  max-width: 250px;
-  margin: 10px 0;
   outline: none;
+  resize: none;
+}
+
+/* Consistent button style */
+.login-button {
+  background-color: rgb(56, 102, 189);
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: rgb(45, 85, 165);
+}
+
+/* Adjust box-2 size */
+.box-2 {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 400px; /* Gives more height to box-2 for square look */
+}
+
+/* .login-form-container {
+text-align: center;
+}
+
+.login-form-container h1 {
+color: black;
+font-size: 24px;
+padding: 20px;
+}
+
+.input-field {
+font-size: 14px;
+padding: 10px;
+border-radius: 7px;
+border: 1px solid rgb(168, 168, 168);
+width: 90%;
+max-width: 250px;
+margin: 10px 0;
+outline: none;
 }
 
 .login-button {
-  color: white;
-  font-size: 14px;
-  padding: 13px;
-  border-radius: 7px;
-  border: none;
-  width: 90%;
-  max-width: 250px;
-  outline: none;
-  background-color: rgb(56, 102, 189);
-  cursor: pointer;
-}
+color: white;
+font-size: 14px;
+padding: 13px;
+border-radius: 7px;
+border: none;
+width: 90%;
+max-width: 250px;
+outline: none;
+background-color: rgb(56, 102, 189);
+cursor: pointer;
+} */
 
 .button-2 {
-  display: none;
+display: none;
 }
 
 .signup-form-container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  text-align: center;
-  display: none;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -60%);
+text-align: center;
+display: none;
 }
 
 .signup-form-container h1 {
-  color: black;
-  font-size: 24px;
-  padding: 20px;
+color: black;
+font-size: 24px;
+padding: 20px;
 }
 
 .signup-button {
-  color: white;
-  font-size: 14px;
-  padding: 13px;
-  border-radius: 7px;
-  border: none;
-  width: 250px;
-  background-color: rgb(56, 189, 149);
+color: white;
+font-size: 14px;
+padding: 13px;
+border-radius: 7px;
+border: none;
+width: 250px;
+background-color: rgb(56, 189, 149);
 }
 
 /* ========== RESPONSIVE STYLES ========== */
 @media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .content-holder {
-    margin-top: 30px;
-    padding: 20px;
-  }
-
-  .box-2 {
-    padding: 20px;
-  }
+.container {
+  grid-template-columns: 1fr;
+  height: auto;
 }
 
-    </style>
+.content-holder {
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.box-2 {
+  padding: 20px;
+}
+}
+
+  </style>
 </head>
 <body>
     
@@ -175,10 +254,10 @@ body {
             <% } %> <br>
             <input type="text" placeholder="Subject" name="Subject" class="input-field">
             <br>
+            <input type="email" placeholder="Recipient Email" name="recipientEmail" class="input-field">
+            <br>
             <textarea type="text" placeholder="Details of email..." name="Body" class="input-field"></textarea>
             <br>
-            <input type="email" placeholder="Recipient Email" name="recipientEmail" class="input-field">
-            <br><br>
             <button class="login-button" type="submit">SendMail</button>
           </div>
       
@@ -196,8 +275,10 @@ body {
       
         </div>
       </form>
-</body>
-<script>
+    </div>
+
+      
+     <script>
     function signup()
 {
     document.querySelector(".login-form-container").style.cssText = "display: none;";
@@ -217,5 +298,7 @@ body {
 //     document.querySelector(".button-1").style.cssText = "display: block";
 
 // }
-</script>
+      </script>
+</body>
+
 </html>

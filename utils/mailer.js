@@ -46,7 +46,8 @@ const emailTemplate = (Body) => {
 
       <!-- Header -->
       <div style="background-color: #4CAF50; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-        <h1 style="margin: 0; color: #ffffff; font-size: 24px;">Henstock</h1>
+      <img src="https://yourdomain.com/image/logo.jpg" alt="Henstock Logo" style="width: 80px; height: auto; margin-bottom: 10px;" />  
+      <h1 style="margin: 0; color: #ffffff; font-size: 24px;">Henstock </h1>
         <p style="margin: 5px 0 0; color: #e0ffe0; font-size: 14px;">Sustainable Farming. Quality Produce.</p>
       </div>
 
@@ -59,8 +60,8 @@ const emailTemplate = (Body) => {
       <div style="background-color: #f7f7f7; padding: 20px; border-top: 1px solid #dddddd; text-align: center; font-size: 13px; color: #777;">
         <p style="margin: 0 0 8px;"><strong>Henstock</strong> – Promoting sustainable farming and distribution of fresh farm produce across Nigeria and beyond.</p>
         <p style="margin: 8px 0;">Follow us on:
-          <a href="https://facebook.com/henstock" style="color: #4CAF50; text-decoration: none;">Facebook</a> |
-          <a href="https://instagram.com/henstock" style="color: #4CAF50; text-decoration: none;">Instagram</a> |
+          <a href="https://www.instagram.com/henstockfoods__ltd/profilecard/?igsh=MWt5NXBtM3J4cnhlbA==" style="color: #4CAF50; text-decoration: none;">Instagram</a> |
+          <a href="https://www.linkedin.com/company/henstock-foods-limited/" style="color: #4CAF50; text-decoration: none;">LinkedIn</a> |
           <a href="https://twitter.com/henstock" style="color: #4CAF50; text-decoration: none;">Twitter</a>
         </p>
         <p style="margin-top: 10px;">&copy; ${new Date().getFullYear()} Henstock. All rights reserved.</p>
